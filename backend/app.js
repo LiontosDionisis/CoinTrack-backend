@@ -4,7 +4,7 @@ const cors = require("cors");
 
 
 const app = express();
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;
 
 app.use(express.json()); // For parsing application/json
 app.use(express.urlencoded({ extended: true }));
@@ -17,7 +17,7 @@ mongoose.connect(process.env.DB_URI, {
 })
 .then(() => {
     console.log("Connected to Database");
-    app.listen(PORT, '0.0.0.0', () => {
+    app.listen(PORT, () => {
         console.log("Server running on port: " , PORT);
     })
 })
@@ -27,8 +27,9 @@ mongoose.connect(process.env.DB_URI, {
 
  
 app.use(cors({
-    origin: 'http://localhost:4200'
+    //origin: 'http://localhost:4200'
     //origin: 'http://192.168.1.101:4200'
+    origin: "https://liontosdionisis.github.io"
 }));
 
 
