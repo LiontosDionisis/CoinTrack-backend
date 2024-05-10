@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "nodemon --env-file=./backend/.env ./backend/app.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node ./backend/app.js"
+    "start": "node ./backend/app.js",
+    "build": "echo \"No build required.\""
   },
   "author": "HelloDev",
   "license": "ISC",
