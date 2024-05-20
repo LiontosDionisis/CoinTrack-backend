@@ -6,7 +6,7 @@ const cors = require("cors");
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-app.use(express.json()); // For parsing application/json
+app.use(express.json()); 
 app.use(express.urlencoded({ extended: true }));
 
 const user = require("../backend/routes/user.route");
