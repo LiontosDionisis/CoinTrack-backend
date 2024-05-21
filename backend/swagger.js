@@ -482,6 +482,182 @@ exports.options = {
                 }
             }
         },
-         
+        "/api/user/delete/{userId}": {
+            "delete": {
+              "tags": ["Users"],
+              "parameters": [
+                {
+                  "name": "userId",
+                  "in": "path",
+                  "required": true,
+                  "description": "User's ID",
+                  "schema": {
+                    "type": "string"
+                  }
+                }
+              ],
+              "description": "Deletes a user by their ID",
+              "responses": {
+                "200": {
+                  "description": "Success message",
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "type": "object",
+                        "properties": {
+                          "name": { "type": "string", "example": "user's name" },
+                          "username": { "type": "string", "example": "user's username" },
+                          "email": { "type": "string", "example": "user's email" },
+                          "password": { "type": "string", "example": "user's hashed password" },
+                          "totalIncome": { "type": "number", "example": 0 },
+                          "totalExpenses": { "type": "number", "example": 0 },
+                          "wallet": { "type": "number", "example": 0 }
+                        }
+                      }
+                    }
+                  }
+                },
+                "404": {
+                  "description": "Error message",
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "type": "object",
+                        "properties": {
+                          "message": { "type": "string", "example": "User not found || other error message" }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+        },
+        "/api/user/addExpense": {
+            "post": {
+              "tags": ["Users"],
+              "description": "Adds user expenses",
+              "requestBody": {
+                "description": "User schema to insert",
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "type": "object",
+                      "properties": {
+                        "expenseAmount": { "type": "number" },
+                        "expenseSource": { "type": "string" },
+                        "userId": { "type": "string" }
+                      },
+                      "required": ["expenseAmount", "userId"]
+                    }
+                  }
+                }
+              },
+              "responses": {
+                "201": {
+                  "description": "Success message and data",
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "type": "object",
+                        "properties": {
+                          "message": { "type": "string", "example": "Expenses added." },
+                          "totalExpenses": { "type": "number", "example": "User's total expenses" },
+                          "wallet": { "type": "number", "example": "User's wallet." }
+                        }
+                      }
+                    }
+                  }
+                },
+                "404": {
+                  "description": "Error message",
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "type": "object",
+                        "properties": {
+                          "message": { "type": "string", "example": "User not found" }
+                        }
+                      }
+                    }
+                  }
+                },
+                "500": {
+                  "description": "Error message",
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "type": "object",
+                        "properties": {
+                          "message": { "type": "string", "example": "Internal server error" }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+        },
+        "/api/user/getWallet": {
+            "post": {
+                "tags": ["Users"],
+                "description": "Gets user's wallet",
+                "requestBody": {
+                    "description": "User schema to insert",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "userId": {"type": "String"}
+                                },
+                                "required": ["userId"]
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Get user's wallet",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "wallet": {"type": "number", "example": "User's wallet amount"}
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Error message",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {"type": "string", "example": "User not found"}
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Error message",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {"type": "string", "example": "Internal server error."}
+                                    }
+                                }
+                            }
+                        }
+                    }  
+                }
+            }
+        }
     }
 };
