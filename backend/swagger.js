@@ -658,6 +658,188 @@ exports.options = {
                     }  
                 }
             }
+        },
+        "api/user/getExpenses": {
+            "post": {
+                "tags": ["Users"],
+                "description": "Get's user expenses.",
+                "requestBody": {
+                    "description": "User schema to insert",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "userId": {"type": "String"}
+                                },
+                                "required": ["userId"]
+                            }
+                        }
+                    }
+                },
+                "responses" : {
+                    "200" : {
+                        "description": "Expenses Transactions",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "amount": {"type": "Number"},
+                                        "source": {"type": "String"},
+                                        "createdAt": { "type": "Date"}
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Error message",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": "User not found"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Error message",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": "Error fetching transactions"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "api/user/addIncome": {
+            "post": {
+                "tags": ["Users"],
+                "description": "Addes user income",
+                "requestBody": {
+                    "description": "User schema to insert",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "incomeAmount": {"type": "Number"},
+                                    "incomeSource": {"type": "String"},
+                                    "userId": {"type": "String"}
+                                },
+                                "required": ["incomeAmount", "userId"]
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Success message and data",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "message": "Income transaction added successfully",
+                                    "totalIncome": {"type": "Number", "example": "User's updated total income"},
+                                    "wallet": {"type": "Number", "example": "User's wallet"}
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Error message",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "message": "User not found."
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Error message",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "message": "Error adding income transaction."
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "api/user/getIncome": {
+            "post": {
+                "tags": ["Users"],
+                "description": "Get's user income",
+                "requestBody": {
+                    "description": "User schema to insert",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "userId": {"type": "String"}
+                                },
+                                "required": ["userId"]
+                            }
+                        }
+                    }
+                },
+                "responses" : {
+                    "200" : {
+                        "description": "Income Transactions",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "amount": {"type": "Number"},
+                                        "source": {"type": "String"},
+                                        "createdAt": { "type": "Date"}
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Error message",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": "User not found"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Error message",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": "Error fetching income"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 };
