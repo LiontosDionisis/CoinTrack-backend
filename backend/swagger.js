@@ -36,7 +36,7 @@ exports.options = {
                 "tags": ["Users"],
                 "description": "Updates user's email",
                 "requestBody": {
-                    "description": "User scheme to insert",
+                    "description": "User schema to insert",
                     "content": {
                         "application/json": {
                             "schema": {
