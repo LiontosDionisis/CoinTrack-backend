@@ -4,7 +4,7 @@ const {registerValidation, loginValidation} = require("./validation")
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
-logger = require("../logger/logger")
+
 
 
 const secretKey = process.env.JWT_SECRET;

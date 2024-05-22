@@ -38,7 +38,7 @@ const logger = createLogger({
         fileRotateTransport,
         new transports.MongoDB({
             level: "info",
-            db: process.env.MONGODB_URI,
+            db: process.env.DB_URI,
             options: {
                 useUnifiedTopology: true
             },
@@ -50,7 +50,7 @@ const logger = createLogger({
         }),
         new transports.MongoDB({
             level: "error",
-            db : process.env.MONGODB_URI,
+            db : process.env.DB_URI,
             options: {
                 useUnifiedTopology: true
             },
